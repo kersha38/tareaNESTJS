@@ -11,13 +11,16 @@ export class AppPreguntasfrecuentescontroller{
   mostrarPreguntas(){
     let html=fs.readFileSync(
       __dirname + '/html/'+"PreguntasFrecuentes.html",
-      'utf8',)
+      'utf8')
 
     this.preguntaFrecuentes.forEach((preguntaActual,indice,arreglo)=>{
-      html.replace('{{pregunta}}',preguntaActual.pregunta+'{{pregunta}}');
-      html.replace('{{respuesta}}',preguntaActual.respuesta+'{{respuesta}}');
+
+      html = html.replace('{{pregunta}}','<h2>'+preguntaActual.pregunta+'</h2>{{pregunta}}');
+      html = html.replace('{{respuesta}}','<h1>'+preguntaActual.respuesta+'</h1>{{respuesta}}');
     });
 
+    html=html.replace('{{pregunta}}','');
+    html=html.replace('{{respuesta}}','');
     return html;
   };
 
